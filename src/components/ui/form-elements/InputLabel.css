@@ -1,13 +1,13 @@
 .label-wrapper {
     font-size: .9rem;
-    margin-bottom: .5rem;
-    color: rgba(0, 0, 0, .9);
+    margin-bottom: .25rem;
+    color: var(--tint-500);
     font-weight: bold;
 }
   
 .optional-indicator {
     margin-left: .15rem;
-    color: rgba(0, 0, 0, .5);
+    color: var(--tint-500);
     font-size: .8rem;
     font-weight: normal,
 }

@@ -5,30 +5,33 @@ import { Character } from '@/types';
 import { ChevronRightIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useCharacter } from '../../../context/CharacterContext';
 import './CharacterDetails.css';
+import { afterLast } from '@/app/lib/utils';
+import Loader from '@/components/Loader';
 
 export const CharacterDetails = ({ params } : { params: any }) => {
   const { characterId } = params;
   const {loading, error, fetchCharacterDetails} = useCharacter();
   const [character, setCharacter] = useState<Character | null>(null);
 
+  const fetchDetails = useCallback( async ({ id }: { id: number }) => {
+    const data = await fetchCharacterDetails({ id });
+
+    setCharacter(data)
+  }, [fetchCharacterDetails])
+
   useEffect(() => {
-    async function fetchDetails({ id }: { id: number }) {
-      const data = await fetchCharacterDetails({ id });
-
-      setCharacter(data)
-    }
-
+    console.log("in useeffect")
     if (characterId) {
       const id = parseInt(characterId)
 
       fetchDetails({ id });
     }
-  }, [characterId, fetchCharacterDetails])
+  }, [characterId, fetchDetails])
     
-  if (loading || !character) return <p>Loading...</p>
+  if (loading || !character) return <Loader />
   return (
     <section>
       <div className="breadcrumbs">
@@ -54,15 +57,50 @@ export const CharacterDetails = ({ params } : { params: any }) => {
         
         <div className="info-box about">
           <h2>About {character.name}</h2>
-
-          {
-            character.gender ? (
-              <FormElement>
-                <InputLabel htmlFor='gender'>Gender</InputLabel>
-                <TextInput value={character.gender} name="gender" disabled />
-              </FormElement>
-            ) : null
-          }
+          <div className="info-container">
+            {
+              character.gender ? (
+                <FormElement>
+                  <InputLabel htmlFor='gender'>Gender</InputLabel>
+                  <TextInput value={character.gender} name="gender" disabled />
+                </FormElement>
+              ) : null
+            }
+            {
+              character.status ? (
+                <FormElement>
+                  <InputLabel htmlFor='status'>Status</InputLabel>
+                  <TextInput value={character.status} name="status" disabled />
+                </FormElement>
+              ) : null
+            }
+            {
+              character.origin ? (
+                <FormElement>
+                  <InputLabel htmlFor='origin'>Origin</InputLabel>
+                  <TextInput value={character.origin.name} name="origin" disabled />
+                </FormElement>
+              ) : null
+            }
+            {
+              character.type ? (
+                <FormElement>
+                  <InputLabel htmlFor='type'>Type</InputLabel>
+                  <TextInput value={character.type} name="type" disabled />
+                </FormElement>
+              ) : null
+            }
+            {
+              character.location ? (
+                <Link href={`/locations/${afterLast({value: character.location.url, delimiter: "/"})}`}>
+                  <FormElement>
+                    <InputLabel htmlFor='location'>Location</InputLabel>
+                    <TextInput value={character.location.name} name="location" disabled />
+                  </FormElement>
+                </Link>
+              ) : null
+            }
+          </div>
         </div>
 
         <div className="info-box episodes">

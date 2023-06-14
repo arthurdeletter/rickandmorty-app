@@ -4,11 +4,12 @@ import { FC } from 'react';
 import { useCharacter } from '@/context/CharacterContext';
 import './Characters.css';
 import { Character } from '@/components/characters';
+import Loader from '@/components/Loader';
 
 export const Characters:FC = () => {
-  const { characters, loading, error } = useCharacter();
+  const { characters } = useCharacter();
 
-  if (loading) return <p>Loading...</p>
+  if (characters.length === 0) return <Loader />
   return (
     <section className='characters'>
       <div className="container">

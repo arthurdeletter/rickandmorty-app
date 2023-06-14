@@ -1,5 +1,6 @@
-import { CharacterProvider } from "@/context/CharacterContext"
-import { LocationProvider } from "@/context/LocationContext"
+import { CharacterProvider } from "@/context/CharacterContext";
+import { LocationProvider } from "@/context/LocationContext";
+import QueryProvider from "@/components/QueryProvider";
 
 const Providers = ({
     children
@@ -7,11 +8,13 @@ const Providers = ({
     children: React.ReactNode
 }) => {
   return (
-    <LocationProvider>
-        <CharacterProvider>
-            {children}
-        </CharacterProvider>
-    </LocationProvider>
+    <QueryProvider>
+      <LocationProvider>
+          <CharacterProvider>
+              {children}
+          </CharacterProvider>
+      </LocationProvider>
+    </QueryProvider>
   )
 }
 

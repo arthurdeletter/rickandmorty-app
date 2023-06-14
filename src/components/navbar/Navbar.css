@@ -73,7 +73,7 @@
     font-size: 1.5rem;
 }
 
-.main__nav .nav__links a.active {
+.main__nav .nav__links [aria-current="page"] {
     color: var(--primary);
 }
 
@@ -85,5 +85,11 @@
     .main__nav .nav__links {
         display: flex;
         column-gap: 1.5rem;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .main__nav .nav__logo > img {
+        filter: brightness(0) invert(1);
     }
 }

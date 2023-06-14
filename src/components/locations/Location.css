@@ -1,7 +1,7 @@
 .location-card {
     padding: 2.5rem 1rem 1.5rem;
-    background-color: hsl(0 0% 100%);
-    border: 1px solid hsl(0 0% 80%);
+    background-color: var(--tint-100);
+    border: 1px solid var(--tint-300);
     display: grid;
     gap: .5rem;
     align-items: flex-start;

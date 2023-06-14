@@ -1,8 +1,10 @@
 "use client"
 
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { createContext, ReactNode, useCallback, useContext, useEffect, useState } from "react";
 import axios from 'axios';
 import { Character } from "@/types";
+import { useQuery } from "react-query";
+import { CHARACTERS_QUERY_KEY } from "@/app/config/query-keys";
 
 interface ContextProps {
     error: string,
@@ -19,11 +21,8 @@ export const CharacterProvider = ({ children }: { children: ReactNode }) => {
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>("");
 
-    useEffect(() => {
-        fetchCharacters();
-    }, [])
-
-    async function fetchCharacters() {
+    const fetchCharacters = useCallback(async () => {
+        console.log("Fetching characters")
         setLoading(true);
         try {
             const response = await axios.get(BASE_URL);
@@ -40,9 +39,14 @@ export const CharacterProvider = ({ children }: { children: ReactNode }) => {
         } finally {
             setLoading(false);
         }
-    }
+    }, [])
 
-    const fetchCharacterDetails = async ({ id }: { id: number }) => {
+    useEffect(() => {
+        fetchCharacters();
+    }, [fetchCharacters])
+
+    const fetchCharacterDetails = useCallback(async ({ id }: { id: number }) => {
+        console.log("Fetching character details")
         setLoading(true);
         try {
             const response = await axios.get(`${BASE_URL}/${id}`);
@@ -64,7 +68,7 @@ export const CharacterProvider = ({ children }: { children: ReactNode }) => {
         } finally {
             setLoading(false);
         }
-    }
+    }, [])
 
     return (
         <CharacterContext.Provider value={{characters, loading, error, fetchCharacterDetails}}>

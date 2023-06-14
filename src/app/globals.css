@@ -73,10 +73,16 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    --neutral: hsl(0 0% 15%);
+    --secondary: hsl(0 0% 30%);
+
+    --tint: hsl(0 0% 90%);
+    --tint-700: hsl(0 0% 70%);
+    --tint-500: hsl(0 0% 50%);
+    --tint-300: hsl(0 0% 30%);
+    --tint-100: hsl(0 0% 10%);
   }
 }
 
@@ -87,4 +93,17 @@ a {
   margin-left: auto;
   margin-right: auto;
   padding: 0 1.33rem;
+}
+
+.animate-spin {
+  animation: spin infinite 1s;
+}
+
+@keyframes spin {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
 }

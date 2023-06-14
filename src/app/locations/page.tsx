@@ -1,13 +1,14 @@
 "use client"
 
-import { useLocation } from '@/context/LocationContext'
-import React from 'react'
+import Loader from '@/components/Loader';
 import { Location } from "@/components/locations";
-import "./Locations.css"
+import { useLocation } from '@/context/LocationContext';
+import "./Locations.css";
 
 export function Locations() {
-  const { locations, loading, error } = useLocation();
+  const { locations } = useLocation();
 
+  if (locations.length === 0) return <Loader />
   return (
     <section className='locations'>
       <div className="container">

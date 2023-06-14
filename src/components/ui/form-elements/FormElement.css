@@ -1,9 +1,9 @@
 .form-element-wrapper {
   display: grid;
-  gap: .25rem;
+  gap: .125rem;
 }
 
 .form-element-description {
   font-size: .8rem;
-  color: rgba(0, 0, 0, .6);
+  color: var(--tint-500);
 }

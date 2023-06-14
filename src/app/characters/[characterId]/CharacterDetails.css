@@ -48,6 +48,11 @@
     color: var(--primary);
 }
 
+.info-container {
+    display: grid;
+    gap: .5rem;
+}
+
 .character-details .character-image {
     position: relative;
     aspect-ratio: 1;

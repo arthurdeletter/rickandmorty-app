@@ -1,0 +1,58 @@
+.breadcrumbs {
+    padding-block: 1rem;
+    background-color: var(--tint-100);
+}
+
+.breadcrumbs .breadcrumb-items {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+}
+
+.breadcrumbs .breadcrumb-items .breadcrumb-icon {
+    height: 1rem;
+    aspect-ratio: 1;
+    color: var(--primary);
+}
+
+.character-details {
+    padding-block: 2rem;
+    display: grid;
+    gap: 1.5rem;
+}
+
+.character-details .info-box {
+    padding: 1rem;
+    background-color: var(--neutral);
+    border: 1px solid var(--tint-100);
+    border-radius: .5rem;
+}
+
+.character-details .general-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.character-details .info-box h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1em;
+}
+
+.character-details .general-info h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.character-details .general-info p {
+    color: var(--primary);
+}
+
+.character-details .character-image {
+    position: relative;
+    aspect-ratio: 1;
+    height: 7.5rem;
+    border-radius: 100vw;
+    overflow: hidden;
+    border: .25rem solid hsl(0 0% 0% / .05);
+}

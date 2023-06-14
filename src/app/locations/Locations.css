@@ -1,0 +1,9 @@
+.locations {
+    padding: 2rem 0;
+}
+
+.locations__wrapper {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}

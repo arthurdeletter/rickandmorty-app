@@ -1,0 +1,9 @@
+.characters {
+    padding: 2rem 0;
+}
+
+.characters__wrapper {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+}
